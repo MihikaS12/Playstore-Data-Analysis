@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Store Data Analysis Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .navbar {
+            background-color: #1e1e1e;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            width: 40px;
+        }
+
+        h1 {
+            color: #00e676;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .dashboard-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .card {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            border: 1px solid #424242;
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+        }
+
+        .card img {
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            max-height: 150px;
+            object-fit: cover;
+        }
+
+        .modal-content {
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+
+        footer {
+            background-color: #1e1e1e;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+            border-top: 1px solid #424242;
+        }
+
+        footer a {
+            color: #00e676;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-dark text-center py-4">
+        <div class="container d-flex justify-content-center align-items-center">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
+                 alt="Google Play Logo" class="img-fluid me-3" style="height: 60px;">
+    
+          
+            <h1 class="text-light fw-bold">
+                <span class="text-success">Play Store</span> Dashboard
+            </h1>
+        </div>
+      
+        <p class="text-light mt-3 fs-5">
+            Insights and visualizations of app data from the Google Play Store
+        </p>
+    </header>
+    
+
+    <!-- Dashboard Cards -->
+    <div class="container dashboard-container">
+        <!-- Card 1 -->
+        <div class="card">
+            <img src="scatter_plot.png" alt="Scatter Plot" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">Revenue vs. Installs</h5>
+                <p class="card-text">Explore the relationship between revenue and installs for paid apps.</p>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#scatterPlotModal">View Graph</button>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+            <img src="choropleth.png" alt="Choropleth Map" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">Installs by Country</h5>
+                <p class="card-text">Visualize app installs by country with a choropleth map.</p>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#choroplethModal">View Graph</button>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+            <img src="dual_axis.png" alt="Dual Axis Chart" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">Free vs Paid Apps</h5>
+                <p class="card-text">Compare average installs and revenue for free vs paid apps.</p>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#dualAxisModal">View Graph</button>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card">
+            <img src="bar_plot.png" alt="Bar Plot" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">Top 10 Categories</h5>
+                <p class="card-text">Analyze ratings and reviews across top app categories.</p>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#barPlotModal">View Graph</button>
+            </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="card">
+            <img src="heatmap.png" alt="Heatmap" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">Correlation Heatmap</h5>
+                <p class="card-text">Explore correlations between various metrics.</p>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#heatmapModal">View Graph</button>
+            </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="card">
+            <img src="line_chart.png" alt="Line Chart" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">Trends Over Time</h5>
+                <p class="card-text">Visualize changes in installs over time for different app categories.</p>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#lineChartModal">View Graph</button>
+            </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="card">
+            <img src="bubble_chart.png" alt="Bubble Chart" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">Category Popularity</h5>
+                <p class="card-text">Bubble chart showing popularity and ratings by category.</p>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#bubbleChartModal">View Graph</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modals">
+        <!-- Scatter Plot Modal -->
+        <div class="modal fade" id="scatterPlotModal" tabindex="-1" aria-labelledby="scatterPlotModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Revenue vs. Installs</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="scatter_plot.png" alt="Scatter Plot" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Choropleth Modal -->
+<div class="modal fade" id="choroplethModal" tabindex="-1" aria-labelledby="choroplethModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="choroplethModalLabel">Installs by Country</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <!-- Choropleth Map -->
+                <iframe src="app_installs_map.html" frameborder="0" 
+                        style="width: 100%; height: calc(100vh - 100px); border: none; margin: 0; padding: 0;"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+        <!-- Dual Axis Modal -->
+        <div class="modal fade" id="dualAxisModal" tabindex="-1" aria-labelledby="dualAxisModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Free vs Paid Apps</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="dual_axis.png" alt="Dual Axis Chart" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bar Plot Modal -->
+        <div class="modal fade" id="barPlotModal" tabindex="-1" aria-labelledby="barPlotModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Top 10 Categories</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="bar_plot.png" alt="Bar Plot" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Heatmap Modal -->
+        <div class="modal fade" id="heatmapModal" tabindex="-1" aria-labelledby="heatmapModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Correlation Heatmap</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="heatmap.png" alt="Heatmap" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Line Chart Modal -->
+        <div class="modal fade" id="lineChartModal" tabindex="-1" aria-labelledby="lineChartModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Trends Over Time</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="line_chart.png" alt="Line Chart" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bubble Chart Modal -->
+        <div class="modal fade" id="bubbleChartModal" tabindex="-1" aria-labelledby="bubbleChartModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Category Popularity</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="bubble_chart.png" alt="Bubble Chart" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
