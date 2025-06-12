@@ -3,7 +3,6 @@ Google Play Store Data Visualization and Interactive Dashboard
 This project is a comprehensive exploration of Google Play Store data, culminating in a responsive and interactive web dashboard. Developed during a three-month internship at NULLCLASS, the project demonstrates advanced data visualization and web development skills.
 
 Features
-
 - Scatter Plot Visualization: Analyze revenue vs. installs for paid apps, categorized by app type.
 - Choropleth Map: Global app install distribution by country and category.
 - Dual-Axis Chart: Compare installs and revenue of free vs. paid apps within top 3 categories.
@@ -13,7 +12,6 @@ Features
 - Bubble Chart: Explore the relationship between app size, average rating, and install count.
 
 Technologies Used
-
 Programming Languages
 - Python
 - JavaScript
