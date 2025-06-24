@@ -11,6 +11,9 @@ Features
 - Heatmap: Visualize correlations among installs, ratings, and review counts for recently updated apps.
 - Bubble Chart: Explore the relationship between app size, average rating, and install count.
 
+
+
+
 Technologies Used
 Programming Languages
 - Python
